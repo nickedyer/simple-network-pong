@@ -2,7 +2,6 @@ package com.nickedyer.snpclient;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 /**
@@ -28,8 +27,8 @@ public class Main extends Application {
         runningStage.setTitle("Simple Network Pong");
 
         //Create new main menu pane and display it
-        Pane mainMenu = new MainMenu();
-        runningScene = mainMenu.getScene();
+        RunningPanes.addPane("mainMenu", new MainMenu());
+        runningScene = RunningPanes.getPane("mainMenu").getScene();
         runningStage.setScene(runningScene);
         runningStage.show();
     }

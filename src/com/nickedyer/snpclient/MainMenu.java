@@ -21,16 +21,16 @@ public class MainMenu extends Pane {
     private static final int MAIN_MENU_HEIGHT = 600;
 
     //The scene that runs on top of the pane
-    private Scene mainMenuScene;
+    private Scene mainScene;
 
     /**
      * Constructor for MainMenu. Creates a MainMenu pane.
      */
     public MainMenu() {
         //Creates a scene using this pane as the parent
-        mainMenuScene = new Scene(this, MAIN_MENU_WIDTH, MAIN_MENU_HEIGHT);
+        mainScene = new Scene(this, MAIN_MENU_WIDTH, MAIN_MENU_HEIGHT);
         //Sets the scene's fill to black
-        mainMenuScene.setFill(Color.BLACK);
+        mainScene.setFill(Color.BLACK);
 
         //Creates title text
         Text title = new Text();
@@ -48,8 +48,9 @@ public class MainMenu extends Pane {
         startButton.setCenterXY(MAIN_MENU_WIDTH / 2, 300);
         //Creates click event handler and adds it to both the button and the text
         EventHandler<MouseEvent> startEventHandler = e -> {
-            System.out.println("Hello!");
-            System.exit(0);
+            RunningPanes.removePane("mainMenu");
+            RunningPanes.addPane("game", new Game());
+            Main.setScene(RunningPanes.getPane("game").getScene());
         };
         startButton.addEventHandler(MouseEvent.MOUSE_CLICKED, startEventHandler);
         startButton.text.addEventHandler(MouseEvent.MOUSE_CLICKED, startEventHandler);
