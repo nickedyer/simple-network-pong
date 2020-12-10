@@ -1,20 +1,46 @@
 package com.nickedyer.snpclient;
 
 import javafx.application.Application;
+import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+/**
+ * Client to Simple Network Pong, a game designed to play pong with your friends.
+ *
+ * @author Nicholas Dyer
+ */
 public class Main extends Application {
-    public static void main(String args[]) {
+
+    //Static variables for the running stage and scene
+    private static Stage runningStage;
+    private static Scene runningScene;
+
+    public static void main(String[] args) {
         launch(args);
     }
 
     @Override
-    public void start(Stage mainStage) throws Exception {
-        Pane mainMenu = new MainMenu();
-        mainStage.setTitle("Simple Network Pong");
+    public void start(Stage mainStage) {
+        runningStage = mainStage;
 
-        mainStage.setScene(mainMenu.getScene());
-        mainStage.show();
+        //Set window title
+        runningStage.setTitle("Simple Network Pong");
+
+        //Create new main menu pane and display it
+        Pane mainMenu = new MainMenu();
+        runningScene = mainMenu.getScene();
+        runningStage.setScene(runningScene);
+        runningStage.show();
+    }
+
+    /**
+     * Sets the current running scene of the program and displays it.
+     *
+     * @param scene The scene to be displayed
+     */
+    public static void setScene(Scene scene) {
+        runningScene = scene;
+        runningStage.setScene(scene);
     }
 }
